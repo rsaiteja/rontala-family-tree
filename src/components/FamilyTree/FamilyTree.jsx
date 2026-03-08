@@ -299,6 +299,31 @@ export default function FamilyTree({ members, onSelectMember, onAddMember }) {
                   </g>
                 )}
 
+                {/* Add parent button (if no parents and authenticated) */}
+                {user && (!member.parentIds || member.parentIds.length === 0) && (
+                  <g
+                    transform={`translate(0, -40)`}
+                    className={styles.addBtn}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onAddMember(member, 'parent')
+                    }}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <circle r="12" fill="var(--accent-tertiary, #5a4a7c)" opacity="0.85" />
+                    <text
+                      x="0"
+                      y="4"
+                      textAnchor="middle"
+                      fill="white"
+                      fontSize="14"
+                      fontWeight="bold"
+                    >
+                      +
+                    </text>
+                  </g>
+                )}
+
                 {/* Add child button (authenticated only) */}
                 {user && (
                   <g

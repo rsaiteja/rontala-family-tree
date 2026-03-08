@@ -28,6 +28,14 @@ function AppContent() {
       if (relationType === 'spouse' && relatedMember) {
         await updateMember(relatedMember.id, { spouseId: newId })
       }
+
+      // If adding a parent, update the child's parentIds to include the new parent
+      if (relationType === 'parent' && relatedMember) {
+        const existingParentIds = relatedMember.parentIds || []
+        await updateMember(relatedMember.id, {
+          parentIds: [...existingParentIds, newId],
+        })
+      }
     },
     [addMember, updateMember]
   )

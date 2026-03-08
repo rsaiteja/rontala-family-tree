@@ -81,6 +81,9 @@ export default function AddMemberForm({
     if (relationType === 'child' && relatedMember) {
       return `Add Child of ${displayName(relatedMember)}`
     }
+    if (relationType === 'parent' && relatedMember) {
+      return `Add Parent of ${displayName(relatedMember)}`
+    }
     return 'Add Family Member'
   }
 
