@@ -77,7 +77,9 @@ export default function FamilyTree({ members, onSelectMember, onAddMember }) {
   const root = hierarchy(treeRoot, (d) => (d.children && d.children.length > 0 ? d.children : null))
 
   // Create tree layout
-  const treeLayout = d3tree().nodeSize([NODE_WIDTH + COUPLE_GAP + 40, LEVEL_HEIGHT])
+  // Horizontal spacing must account for spouse cards
+  const HORIZONTAL_SPACING = NODE_WIDTH * 2 + COUPLE_GAP + 60
+  const treeLayout = d3tree().nodeSize([HORIZONTAL_SPACING, LEVEL_HEIGHT])
   treeLayout(root)
 
   // Collect nodes and links
