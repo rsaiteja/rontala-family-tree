@@ -76,10 +76,22 @@ export default function FamilyTree({ members, onSelectMember, onAddMember }) {
   // Convert to d3 hierarchy
   const root = hierarchy(treeRoot, (d) => (d.children && d.children.length > 0 ? d.children : null))
 
-  // Create tree layout
-  // Horizontal spacing must account for spouse cards
-  const HORIZONTAL_SPACING = NODE_WIDTH * 2 + COUPLE_GAP + 60
-  const treeLayout = d3tree().nodeSize([HORIZONTAL_SPACING, LEVEL_HEIGHT])
+  // Create tree layout with dynamic separation
+  // Base unit for nodeSize  fits a single card with padding
+  const BASE_SIZE = NODE_WIDTH + 40
+  const treeLayout = d3tree()
+    .nodeSize([BASE_SIZE, LEVEL_HEIGHT])
+    .separation((a, b) => {
+      // Right extent from center: couple extends further right due to spouse card
+      const aRight = a.data.spouse ? (COUPLE_GAP + NODE_WIDTH) : (NODE_WIDTH / 2)
+      const bRight = b.data.spouse ? (COUPLE_GAP + NODE_WIDTH) : (NODE_WIDTH / 2)
+      const halfCard = NODE_WIDTH / 2
+      // Account for either ordering (a left of b, or b left of a)
+      const minDist = Math.max(aRight + halfCard, bRight + halfCard) + 30
+      // Cousins (different parents) get a bit more breathing room
+      const cousinExtra = a.parent === b.parent ? 0 : 0.15
+      return (minDist / BASE_SIZE) + cousinExtra
+    })
   treeLayout(root)
 
   // Collect nodes and links
