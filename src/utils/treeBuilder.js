@@ -41,10 +41,10 @@ export function buildTree(members) {
   members.forEach((m) => {
     // Skip members that are only present as a spouse attachment
     // But only skip if their spouse is NOT also a child (avoid losing people)
-    if (secondarySpouses.has(m.id)) return
+    const hasParents = m.parentIds && m.parentIds.length > 0
+    if (secondarySpouses.has(m.id) && !hasParents) return
 
     if (spouseIds.has(m.id)) {
-      const hasParents = m.parentIds && m.parentIds.length > 0
       if (!hasParents) return
     }
 
