@@ -1,0 +1,154 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: var(--card-bg, #faf8f5);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 480px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text-muted, #8b7e6a);
+  line-height: 1;
+}
+
+.title {
+  margin: 0 0 1.25rem;
+  color: var(--text, #3d3428);
+  font-size: 1.2rem;
+}
+
+.photoEdit {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.photoSmall {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.photoPlaceholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg, #f5f2ed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 2px dashed var(--card-border, #e0d9cf);
+}
+
+.uploadLabel {
+  padding: 0.4rem 0.8rem;
+  background: var(--bg, #f5f2ed);
+  border: 1px solid var(--card-border, #e0d9cf);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text, #3d3428);
+}
+
+.uploadLabel:hover {
+  background: var(--card-border, #e0d9cf);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.field label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted, #8b7e6a);
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 0.5rem;
+  border: 1px solid var(--card-border, #e0d9cf);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  background: white;
+  color: var(--text, #3d3428);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.formActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.submitBtn {
+  flex: 1;
+  padding: 0.65rem;
+  background: var(--accent, #4a7c59);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #3d6b4a;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 0.65rem;
+  background: none;
+  border: 1px solid var(--card-border, #e0d9cf);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-muted, #8b7e6a);
+}

@@ -1,0 +1,58 @@
+.signInBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  background: white;
+  border: 1px solid var(--card-border, #e0d9cf);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text, #3d3428);
+  transition: box-shadow 0.2s;
+}
+
+.signInBtn:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.googleIcon {
+  flex-shrink: 0;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 0.85rem;
+  color: var(--text, #3d3428);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.signOutBtn {
+  padding: 0.3rem 0.7rem;
+  background: none;
+  border: 1px solid var(--card-border, #e0d9cf);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-muted, #8b7e6a);
+  font-family: 'Inter', sans-serif;
+}
+
+.signOutBtn:hover {
+  background: var(--bg, #f5f2ed);
+}
