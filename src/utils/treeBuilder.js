@@ -25,9 +25,14 @@ export function buildTree(members) {
   // Build a set of IDs that are someone's spouse — we won't give them
   // their own node in the tree; they appear as `.spouse` on their partner.
   const spouseIds = new Set()
+  const secondarySpouses = new Set()
   members.forEach((m) => {
     if (m.spouseId && byId.has(m.spouseId)) {
       spouseIds.add(m.spouseId)
+      const partner = byId.get(m.spouseId)
+      if (partner.spouseId === m.id && m.id > partner.id) {
+        secondarySpouses.add(m.id)
+      }
     }
   })
 
@@ -36,10 +41,11 @@ export function buildTree(members) {
   members.forEach((m) => {
     // Skip members that are only present as a spouse attachment
     // But only skip if their spouse is NOT also a child (avoid losing people)
+    if (secondarySpouses.has(m.id)) return
+
     if (spouseIds.has(m.id)) {
-      // Check: does this member also have parents? If yes, they need their own node.
       const hasParents = m.parentIds && m.parentIds.length > 0
-      if (!hasParents) return // pure spouse, skip as standalone node
+      if (!hasParents) return
     }
 
     if (m.parentIds && m.parentIds.length > 0) {
@@ -54,8 +60,7 @@ export function buildTree(members) {
   const roots = members.filter((m) => {
     const hasParents = m.parentIds && m.parentIds.length > 0
     if (hasParents) return false
-    // If this member is only present as someone else's spouse and has no children
-    // of their own, don't make them a root
+    if (secondarySpouses.has(m.id)) return false
     if (spouseIds.has(m.id) && !childrenOf.has(m.id)) return false
     return true
   })
