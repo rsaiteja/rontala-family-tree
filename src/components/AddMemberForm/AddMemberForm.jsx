@@ -13,7 +13,7 @@ export default function AddMemberForm({
   const { upload, uploading } = useImageUpload()
   const [saving, setSaving] = useState(false)
   const [form, setForm] = useState({
-    firstname: '',
+    firstName: '',
     lastName: relatedMember?.lastName || '',
     bio: '',
     birthDate: '',
@@ -37,12 +37,12 @@ export default function AddMemberForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.firstname.trim()) return
+    if (!form.firstName.trim()) return
     setSaving(true)
 
     try {
       const memberData = {
-        firstname: form.firstname.trim(),
+        firstName: form.firstName.trim(),
         lastName: form.lastName.trim(),
         bio: form.bio || null,
         birthDate: form.birthDate || null,
@@ -116,8 +116,8 @@ export default function AddMemberForm({
             <div className={styles.field}>
               <label>First Name *</label>
               <input
-                value={form.firstname}
-                onChange={(e) => handleChange('firstname', e.target.value)}
+                value={form.firstName}
+                onChange={(e) => handleChange('firstName', e.target.value)}
                 required
                 autoFocus
               />
@@ -173,7 +173,7 @@ export default function AddMemberForm({
             <button
               type="submit"
               className={styles.submitBtn}
-              disabled={saving || uploading || !form.firstname.trim()}
+              disabled={saving || uploading || !form.firstName.trim()}
             >
               {saving ? 'Adding...' : 'Add Member'}
             </button>

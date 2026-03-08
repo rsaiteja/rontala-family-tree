@@ -41,7 +41,7 @@ export function useMembers() {
   const addMember = async (data) => {
     const colRef = collection(db, COLLECTION)
     const docRef = await addDoc(colRef, {
-      firstname: data.firstname || '',
+      firstName: data.firstName || '',
       lastName: data.lastName || '',
       bio: data.bio || null,
       birthDate: data.birthDate || null,

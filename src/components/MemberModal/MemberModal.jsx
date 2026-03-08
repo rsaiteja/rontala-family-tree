@@ -10,7 +10,7 @@ export default function MemberModal({ member, members, onClose, onUpdate, onDele
   const [editing, setEditing] = useState(false)
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [form, setForm] = useState({
-    firstname: member.firstname || '',
+    firstName: member.firstName || '',
     lastName: member.lastName || '',
     bio: member.bio || '',
     birthDate: member.birthDate || '',
@@ -34,7 +34,7 @@ export default function MemberModal({ member, members, onClose, onUpdate, onDele
 
   const handleSave = async () => {
     await onUpdate(member.id, {
-      firstname: form.firstname,
+      firstName: form.firstName,
       lastName: form.lastName,
       bio: form.bio || null,
       birthDate: form.birthDate || null,
@@ -194,8 +194,8 @@ export default function MemberModal({ member, members, onClose, onUpdate, onDele
               <div className={styles.field}>
                 <label>First Name</label>
                 <input
-                  value={form.firstname}
-                  onChange={(e) => handleChange('firstname', e.target.value)}
+                  value={form.firstName}
+                  onChange={(e) => handleChange('firstName', e.target.value)}
                 />
               </div>
               <div className={styles.field}>

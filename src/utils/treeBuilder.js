@@ -2,7 +2,7 @@
  * Converts flat Firestore members array into a D3-compatible hierarchy.
  *
  * Data model per member:
- *   { id, firstname, lastName, parentIds: string[], spouseId: string|null, ... }
+ *   { id, firstName, lastName, parentIds: string[], spouseId: string|null, ... }
  *
  * The tree is rooted at members that have no parents (parentIds is empty/null).
  * Spouses are attached as a `.spouse` property on the node rather than as
@@ -102,7 +102,7 @@ export function buildTree(members) {
 
   // Multiple roots — create a virtual root
   return {
-    data: { id: '__root__', firstname: 'Family', lastName: '', virtual: true },
+    data: { id: '__root__', firstName: 'Family', lastName: '', virtual: true },
     children: roots.map(buildNode),
     spouse: null,
   }
@@ -113,7 +113,7 @@ export function buildTree(members) {
  */
 export function displayName(member) {
   if (!member) return ''
-  const first = member.firstname || ''
+  const first = member.firstName || ''
   const last = member.lastName || ''
   return `${first} ${last}`.trim() || 'Unknown'
 }
